@@ -151,7 +151,7 @@ class EpaycoWebhookService
     public function getMoodleUserData(array $payload): array
     {
         return [
-            'email' => $payload['x_customer_email'] ?? '',
+            'email' => urlencode($payload['x_customer_email']) ?? '',
             'firstname' => $payload['x_customer_name'] ?? '',
             'lastname' => $payload['x_customer_lastname'] ?? '',
             'phone' => $payload['x_customer_phone'] ?? '',

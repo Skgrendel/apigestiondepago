@@ -14,7 +14,7 @@ Route::get('/user', function (Request $request) {
 
 Route::prefix('/webhooks')->group(function () {
     // Recibir transacción de Epayco
-    Route::post('/epayco/transaction', [WebhookController::class, 'handleEpaycoTransaction']);
+    Route::match(['get', 'post'], '/epayco/transaction', [WebhookController::class, 'handleEpaycoTransaction']);
 
     // Verificar estado de una transacción
     Route::get('/transaction/{transactionId}', [WebhookController::class, 'getWebhookStatus']);

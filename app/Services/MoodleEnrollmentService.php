@@ -313,6 +313,7 @@ class MoodleEnrollmentService
         }
 
         if(count(preg_split('/\s+/', $nombres)) >= 2){
+            $partes = preg_split('/\s+/', $nombres);
             $nombres = $partes[1].' '.$partes[0];
         }
 

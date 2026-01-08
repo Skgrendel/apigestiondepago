@@ -238,7 +238,7 @@
 
             <!-- Support -->
             <div class="support">
-                ¿Necesitas ayuda? Contáctanos en <a href="mailto:contacto@acoficum.org">contacto@acoficum.org</a>
+                ¿Necesitas ayuda? Contáctanos en <a href="mailto:sig@acoficum.org">sig@acoficum.org</a>
             </div>
         </div>
 
