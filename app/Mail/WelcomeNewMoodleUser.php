@@ -21,7 +21,7 @@ class WelcomeNewMoodleUser extends Mailable
         public string $firstname,
         public string $lastname,
         public string $email,
-        public string $courseName = 'ASOCIADO ACOFICUM',
+        public string $membershipName = 'Membresía ACOFICUM',
         public string $campusUrl = 'https://campus.asociados.acoficum.org/'
     ) {
     }
@@ -51,7 +51,7 @@ class WelcomeNewMoodleUser extends Mailable
                 'firstname' => $this->firstname,
                 'lastname' => $this->lastname,
                 'email' => $this->email,
-                'courseName' => $this->courseName,
+                'membershipName' => $this->membershipName,
                 'campusUrl' => $this->campusUrl,
             ],
         );

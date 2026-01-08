@@ -794,7 +794,7 @@ class MoodleEnrollmentService
                     firstname: $firstname,
                     lastname: $lastname,
                     email: $email,
-                    courseName: env('MOODLE_COURSE_NAME', 'ASOCIADO ACOFICUM'),
+                    membershipName: env('MOODLE_COURSE_NAME', 'Membresía ACOFICUM'),
                     campusUrl: $campusUrl
                 )
             );

@@ -291,9 +291,9 @@
 
             <!-- Course Info -->
             <div class="course-info">
-                <h3>Curso Inscrito</h3>
-                <p><strong>{{ $courseName }}</strong></p>
-                <p>Ya estás inscrito en este curso y puedes comenzar a acceder al contenido de inmediato.</p>
+                <h3>Tu Membresía</h3>
+                <p><strong>{{ $membershipName }}</strong></p>
+                <p>Ya tienes acceso a todos los contenidos y beneficios de tu membresía.</p>
             </div>
 
             <!-- Instructions -->
@@ -302,8 +302,8 @@
                 <ol>
                     <li>Haz clic en el botón "Ir al Campus" a continuación</li>
                     <li>Inicia sesión con tu usuario y contraseña</li>
-                    <li>Navega a tu curso inscrito</li>
-                    <li>¡Comienza tu experiencia de aprendizaje!</li>
+                    <li>Accede a todos los contenidos de tu membresía</li>
+                    <li>¡Disfruta de todos los beneficios de tu suscripción!</li>
                 </ol>
             </div>
 

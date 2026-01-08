@@ -8,6 +8,13 @@ Route::get('/', function () {
 });
 
 /**
+ * Página de confirmación de pago
+ */
+Route::get('/pago/confirmacion', function () {
+    return view('payment-success');
+});
+
+/**
  * Rutas para webhooks de Epayco
  */
 Route::prefix('api/webhooks')->group(function () {
