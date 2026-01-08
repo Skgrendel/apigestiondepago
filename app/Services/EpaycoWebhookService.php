@@ -61,10 +61,10 @@ class EpaycoWebhookService
         $response = strtoupper($payload['x_respuesta'] ?? '');
 
         return match ($response) {
-            'ACEPTADA' => 'ACEPTADA',
-            'RECHAZADA' => 'RECHAZADA',
-            'PENDIENTE' => 'PENDIENTE',
-            default => 'DESCONOCIDO',
+            'Aceptada' => 'Aceptada',
+            'Rechazada' => 'Rechazada',
+            'Pendiente' => 'Pendiente',
+            default => 'Desconocido',
         };
     }
 
