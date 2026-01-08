@@ -278,7 +278,7 @@
 
             <div class="checkmark">✓</div>
 
-            <h1>¡Tu Pago Ha Sido Recibido!</h1>
+            <h1>¡Tu Pago está Siendo Procesado!</h1>
 
             <p>
                 Tu transacción se está procesando en este momento. En los próximos momentos recibirás un correo con toda la información que necesitas para acceder a tu membresía.
