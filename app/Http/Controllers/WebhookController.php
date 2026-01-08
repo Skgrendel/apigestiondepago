@@ -23,6 +23,7 @@ class WebhookController extends Controller
      */
     public function handleEpaycoTransaction(Request $request): JsonResponse
     {
+        //TODO: falta validar el id del plan corresponda con el plan comprado
         try {
             Log::info($request->method().' - Webhook recibido de Epayco', $request->all());
             //validar que el referencia de pago ya fue usada
