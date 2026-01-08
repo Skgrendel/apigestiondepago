@@ -23,7 +23,7 @@ class EpaycoWebhookRequest extends FormRequest
     {
         return [
             'transactionId' => 'required|string',
-            'status' => 'required|string|in:ACEPTADA,RECHAZADA,PENDIENTE,ERROR',
+            'status' => 'required|string|in:Aceptada,Rechazada,Pendiente,Error',
             'amount' => 'required|numeric|min:0',
             'reference' => 'required|string',
             'paymentMethod' => 'required|string',
@@ -41,7 +41,7 @@ class EpaycoWebhookRequest extends FormRequest
         return [
             'transactionId.required' => 'ID de transacción es requerido',
             'status.required' => 'Estado del pago es requerido',
-            'status.in' => 'Estado inválido: debe ser ACEPTADA, RECHAZADA, PENDIENTE o ERROR',
+            'status.in' => 'Estado inválido: debe ser Aceptada, Rechazada, Pendiente o Error',
             'amount.required' => 'Monto es requerido',
             'amount.numeric' => 'Monto debe ser un número válido',
             'reference.required' => 'Referencia es requerida',

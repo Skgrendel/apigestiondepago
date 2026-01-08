@@ -50,7 +50,7 @@ class EpaycoWebhookService
     {
         // Epayco envía código de respuesta "1" para aprobada
         return isset($payload['x_cod_respuesta']) && $payload['x_cod_respuesta'] == '1' &&
-               isset($payload['x_respuesta']) && strtoupper($payload['x_respuesta']) === 'ACEPTADA';
+               isset($payload['x_respuesta']) && strtoupper($payload['x_respuesta']) === 'Aceptada';
     }
 
     /**

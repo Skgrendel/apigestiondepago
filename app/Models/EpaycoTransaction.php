@@ -35,7 +35,7 @@ class EpaycoTransaction extends Model
      */
     public function scopeApproved($query)
     {
-        return $query->where('status', 'ACEPTADA');
+        return $query->where('status', 'Aceptada');
     }
 
     /**
@@ -99,7 +99,7 @@ class EpaycoTransaction extends Model
      */
     public function isApproved(): bool
     {
-        return $this->status === 'ACEPTADA';
+        return $this->status === 'Aceptada';
     }
 
     /**
@@ -124,10 +124,13 @@ class EpaycoTransaction extends Model
     public function getStatusLabel(): string
     {
         $labels = [
-            'ACEPTADA' => 'Aprobado',
+            'Aceptada' => 'Aceptada',
             'RECHAZADA' => 'Rechazado',
             'PENDIENTE' => 'Pendiente',
             'ERROR' => 'Error',
+            'Rechazada' => 'Rechazado',
+            'Pendiente' => 'Pendiente',
+            'Error' => 'Error',
         ];
 
         return $labels[$this->status] ?? 'Desconocido';

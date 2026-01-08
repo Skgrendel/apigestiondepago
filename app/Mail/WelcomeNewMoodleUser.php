@@ -34,7 +34,7 @@ class WelcomeNewMoodleUser extends Mailable
         return new Envelope(
             subject: '¡Bienvenido al Campus ACOFICUM! 🎓',
             from: env('MAIL_FROM_ADDRESS', 'noreply@acoficum.org'),
-            replyTo: env('MAIL_REPLY_TO', 'contacto@acoficum.org'),
+            replyTo: env('MAIL_REPLY_TO', 'sig@acoficum.org'),
         );
     }
 
