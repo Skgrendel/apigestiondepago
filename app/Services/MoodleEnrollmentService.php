@@ -4,9 +4,11 @@ namespace App\Services;
 
 use App\Models\User;
 use App\Models\EpaycoTransaction;
+use App\Mail\WelcomeNewMoodleUser;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -239,6 +241,29 @@ class MoodleEnrollmentService
                     'step' => 'enrollment',
                     'moodle_user_id' => $moodleUserId
                 ];
+            }
+
+            // Step 4: Send welcome email if user was newly created
+            if ($moodleCredentials) {
+                try {
+                    $this->sendWelcomeEmail(
+                        $moodleCredentials['email'],
+                        $moodleCredentials['username'],
+                        $moodleCredentials['password'],
+                        $userData['firstname'],
+                        $userData['lastname']
+                    );
+
+                    Log::info('Welcome email sent successfully', [
+                        'email' => $moodleCredentials['email'],
+                        'moodle_user_id' => $moodleUserId
+                    ]);
+                } catch (\Exception $e) {
+                    Log::error('Failed to send welcome email', [
+                        'email' => $moodleCredentials['email'],
+                        'error' => $e->getMessage()
+                    ]);
+                }
             }
 
             Log::info('Epayco enrollment completed successfully', [
@@ -735,6 +760,53 @@ class MoodleEnrollmentService
                 'error' => $e->getMessage()
             ]);
             return [];
+        }
+    }
+
+    /**
+     * Send welcome email to new user with credentials
+     *
+     * @param string $email
+     * @param string $username
+     * @param string $password
+     * @param string $firstname
+     * @param string $lastname
+     * @return bool
+     */
+    private function sendWelcomeEmail(
+        string $email,
+        string $username,
+        string $password,
+        string $firstname,
+        string $lastname
+    ): bool {
+        try {
+            $campusUrl = env('MOODLE_URL');
+            // Extract base URL from full API URL
+            if (strpos($campusUrl, '/webservice/rest/server.php') !== false) {
+                $campusUrl = str_replace('/webservice/rest/server.php', '/', $campusUrl);
+            }
+
+            Mail::to($email)->send(
+                new WelcomeNewMoodleUser(
+                    username: $username,
+                    password: $password,
+                    firstname: $firstname,
+                    lastname: $lastname,
+                    email: $email,
+                    courseName: env('MOODLE_COURSE_NAME', 'ASOCIADO ACOFICUM'),
+                    campusUrl: $campusUrl
+                )
+            );
+
+            return true;
+        } catch (\Exception $e) {
+            Log::error('Error sending welcome email', [
+                'email' => $email,
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+            return false;
         }
     }
 }
