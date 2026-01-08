@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('epayco_transactions', function (Blueprint $table) {
             $table->id();
             $table->string('transaction_id')->unique()->index();
-            $table->enum('status', ['ACEPTADA', 'RECHAZADA', 'PENDIENTE', 'ERROR'])->index();
+            $table->enum('status', ['Aceptada', 'Rechazada', 'Pendiente', 'Error'])->index();
             $table->decimal('amount', 12, 2);
             $table->string('reference')->index();
             $table->string('payment_method'); // VS, MC, AM, PSE, etc.
