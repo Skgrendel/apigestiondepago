@@ -304,10 +304,23 @@ class MoodleEnrollmentService
      */
     private function extractUserDataFromEpayco(array $payload): array
     {
+        $nombres = trim($payload['x_customer_name']);
+        $apellidos = trim($payload['x_customer_lastname']);
+
+        if(count(preg_split('/\s+/', $apellidos)) >= 2){
+            $partes = preg_split('/\s+/', $apellidos);
+            $apellidos = $partes[0].' '.$partes[1];
+        }
+
+        if(count(preg_split('/\s+/', $nombres)) >= 2){
+            $nombres = $partes[1].' '.$partes[0];
+        }
+
+
         return [
             'email' => $payload['x_customer_email'] ?? '',
-            'firstname' => $payload['x_customer_name'] ?? 'Usuario',
-            'lastname' => $payload['x_customer_lastname'] ?? 'Apellido',
+            'firstname' => $nombres ?? 'Usuario',
+            'lastname' => $apellidos ?? 'Apellido',
             'phone' => $payload['x_customer_phone'] ?? '',
             'city' => $payload['x_customer_city'] ?? 'Colombia',
             'country' => $payload['x_customer_country'] ?? 'CO',

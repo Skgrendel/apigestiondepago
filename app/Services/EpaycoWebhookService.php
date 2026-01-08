@@ -13,13 +13,22 @@ class EpaycoWebhookService
     public function processTransaction(array $payload): EpaycoTransaction
     {
         // Validar que la respuesta sea aceptada
-        $isApproved = $this->validateApprovedTransaction($payload);
+        $isSignatureValid = $this->validateSignature($payload);
+
+        if(!$isSignatureValid) {
+            $status = 'Error';
+            $isApproved = false;
+        }{
+            $status = $this->mapStatus($payload);
+            $isApproved = $this->validateApprovedTransaction($payload);
+        }
+
 
         // Crear o actualizar la transacción
         $transaction = EpaycoTransaction::updateOrCreate(
             ['transaction_id' => $payload['x_transaction_id']],
             [
-                'status' => $this->mapStatus($payload),
+                'status' => $status,
                 'amount' => (float) $payload['x_amount'],
                 'reference' => $payload['x_ref_payco'] ?? null,
                 'payment_method' => $payload['x_franchise'] ?? null,
@@ -41,6 +50,22 @@ class EpaycoWebhookService
         }
 
         return $transaction;
+    }
+
+    private function validateSignature(array $payload): bool
+    {
+        //todo: TOCA REMPLAZAR EL X_AMOUNT Y X_CURRENCY_CODE POR VALORES DEL PLAN
+        $customerId = env('EPAYCO_CUSTOMER_ID', '');
+        $pkey = env('EPAYCO_P_KEY', '');
+        $xrefpayco = $payload['x_ref_payco'] ?? '';
+        $xtransactionid = $payload['x_transaction_id'] ?? '';
+        $xamount = $payload['x_amount'] ?? '';
+        $xcurrencycode = $payload['x_currency_code'] ?? '';
+
+        $signatureString = "{$customerId}^{$pkey}^{$xrefpayco}^{$xtransactionid}^{$xamount}^{$xcurrencycode}";
+        $calculatedSignature = hash('sha256', $signatureString);
+        $receivedSignature = $payload['x_signature'] ?? '';
+        return hash_equals($calculatedSignature, $receivedSignature);
     }
 
     /**

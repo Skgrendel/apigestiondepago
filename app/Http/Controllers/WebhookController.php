@@ -24,6 +24,15 @@ class WebhookController extends Controller
     public function handleEpaycoTransaction(Request $request): JsonResponse
     {
         try {
+            //validar que el referencia de pago ya fue usada
+            $existingTransaction = EpaycoTransaction::where('reference', $request->input('x_ref_payco'))->first();
+            if ($existingTransaction) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'La referencia de pago ya ha sido utilizada',
+                ], 400);
+            }
+
             // Registrar el webhook recibido
             $webhookLog = WebhookLog::create([
                 'provider' => 'epayco',
