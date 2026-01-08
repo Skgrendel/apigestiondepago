@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bienvenido al Campus ACOFICUM</title>
+    <title>Bienvenido a tu Membresía ACOFICUM</title>
     <style>
         * {
             margin: 0;
@@ -12,235 +12,171 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.5;
             color: #333;
-            background-color: #f5f5f5;
+            background-color: #f9f9f9;
         }
 
         .container {
-            max-width: 600px;
-            margin: 0 auto;
+            max-width: 480px;
+            margin: 20px auto;
             background-color: #ffffff;
-            padding: 0;
-            border-radius: 8px;
+            border-radius: 6px;
             overflow: hidden;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
         }
 
         .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 40px 20px;
+            background: #ffffff;
+            padding: 30px 20px 20px;
             text-align: center;
+            border-bottom: 1px solid #f0f0f0;
         }
 
-        .header h1 {
-            font-size: 28px;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-
-        .header p {
-            font-size: 14px;
-            opacity: 0.9;
+        .logo {
+            max-height: 50px;
+            margin-bottom: 15px;
+            display: block;
         }
 
         .content {
-            padding: 40px 30px;
+            padding: 30px 20px;
         }
 
         .greeting {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 600;
-            color: #333;
+            color: #003366;
+            margin-bottom: 15px;
+        }
+
+        .message {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
             margin-bottom: 20px;
         }
 
-        .welcome-text {
-            margin-bottom: 30px;
-            color: #555;
-            line-height: 1.8;
+        .section {
+            margin-bottom: 25px;
         }
 
-        .credentials-box {
-            background-color: #f8f9fa;
-            border-left: 4px solid #667eea;
-            padding: 20px;
-            margin-bottom: 30px;
-            border-radius: 4px;
-        }
-
-        .credentials-box h3 {
-            color: #333;
-            font-size: 16px;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-        }
-
-        .credentials-box h3::before {
-            content: "🔐";
-            margin-right: 10px;
-        }
-
-        .credential-item {
+        .section-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #003366;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             margin-bottom: 12px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid #e0e0e0;
         }
 
-        .credential-item:last-child {
-            border-bottom: none;
+        .credentials {
+            background: #fafbfc;
+            border: 1px solid #e8e8e8;
+            border-radius: 4px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+
+        .credential-row {
+            margin-bottom: 12px;
+        }
+
+        .credential-row:last-child {
             margin-bottom: 0;
-            padding-bottom: 0;
         }
 
         .credential-label {
             display: block;
-            font-weight: 600;
-            color: #667eea;
-            font-size: 12px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #999;
             text-transform: uppercase;
+            letter-spacing: 0.4px;
             margin-bottom: 4px;
-            letter-spacing: 0.5px;
         }
 
         .credential-value {
             display: block;
-            font-size: 16px;
-            color: #333;
+            font-size: 15px;
+            color: #003366;
+            font-family: 'Menlo', 'Monaco', 'Courier', monospace;
+            font-weight: 600;
             word-break: break-all;
-            font-family: 'Courier New', monospace;
-            background-color: white;
-            padding: 8px 12px;
-            border-radius: 4px;
-            border: 1px solid #ddd;
         }
 
-        .course-info {
-            background-color: #e8f4f8;
-            border-left: 4px solid #17a2b8;
-            padding: 20px;
-            margin-bottom: 30px;
-            border-radius: 4px;
+        .alert {
+            background: #fff5f5;
+            border-left: 3px solid #d32f2f;
+            padding: 12px 14px;
+            border-radius: 3px;
+            font-size: 13px;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 20px;
         }
 
-        .course-info h3 {
-            color: #333;
-            font-size: 16px;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
+        .alert strong {
+            color: #d32f2f;
         }
 
-        .course-info h3::before {
-            content: "📚";
-            margin-right: 10px;
-        }
-
-        .course-info p {
-            color: #555;
-            margin: 8px 0;
-        }
-
-        .instructions {
-            background-color: #fff3cd;
-            border-left: 4px solid #ffc107;
-            padding: 20px;
-            margin-bottom: 30px;
-            border-radius: 4px;
-        }
-
-        .instructions h3 {
-            color: #333;
-            font-size: 16px;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-        }
-
-        .instructions h3::before {
-            content: "📝";
-            margin-right: 10px;
-        }
-
-        .instructions ol {
-            margin-left: 20px;
-            color: #555;
-        }
-
-        .instructions li {
-            margin-bottom: 8px;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white !important;
+        .button {
+            display: block;
+            background: #d32f2f;
+            color: white;
             text-decoration: none;
-            padding: 14px 40px;
-            border-radius: 6px;
+            padding: 12px 20px;
+            border-radius: 4px;
             font-weight: 600;
             text-align: center;
-            margin-bottom: 30px;
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            margin-bottom: 20px;
+            font-size: 14px;
+            transition: background 0.2s;
         }
 
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        .button:hover {
+            background: #b71c1c;
         }
 
-        .cta-button-wrapper {
-            text-align: center;
-            margin-bottom: 30px;
+        .support {
+            font-size: 13px;
+            color: #999;
+            padding: 12px;
+            background: #fafbfc;
+            border-radius: 4px;
+        }
+
+        .support a {
+            color: #d32f2f;
+            text-decoration: none;
+        }
+
+        .support a:hover {
+            text-decoration: underline;
         }
 
         .footer {
-            background-color: #f8f9fa;
-            border-top: 1px solid #e0e0e0;
+            background: #fafbfc;
+            border-top: 1px solid #f0f0f0;
             padding: 20px;
             text-align: center;
-            font-size: 12px;
-            color: #666;
-        }
-
-        .footer p {
-            margin: 5px 0;
-        }
-
-        .important-note {
-            background-color: #f1f3ff;
-            border: 1px solid #d4d9f7;
-            padding: 15px;
-            border-radius: 4px;
-            margin-bottom: 20px;
-            font-size: 13px;
-            color: #555;
+            font-size: 11px;
+            color: #999;
             line-height: 1.6;
         }
 
-        .important-note strong {
-            color: #667eea;
-        }
+        @media (max-width: 480px) {
+            .container {
+                border-radius: 0;
+            }
 
-        @media (max-width: 600px) {
             .content {
                 padding: 20px;
             }
 
             .header {
-                padding: 30px 20px;
-            }
-
-            .header h1 {
-                font-size: 24px;
-            }
-
-            .greeting {
-                font-size: 16px;
+                padding: 20px;
             }
         }
     </style>
@@ -249,81 +185,67 @@
     <div class="container">
         <!-- Header -->
         <div class="header">
-            <h1>🎓 ¡Bienvenido!</h1>
-            <p>Campus de Asociados ACOFICUM</p>
+            <img src="https://acoficum.org/wp-content/uploads/2025/03/cropped-LOGO-SITIO-WEB-ACOFICUM-340x71.png" alt="ACOFICUM" class="logo">
         </div>
 
         <!-- Content -->
         <div class="content">
-            <div class="greeting">
-                Hola {{ $firstname }} {{ $lastname }},
-            </div>
+            <p class="greeting">Hola {{ $firstname }} {{ $lastname }},</p>
 
-            <div class="welcome-text">
-                <p>¡Estamos muy emocionados de recibirte en nuestro campus virtual!</p>
-                <p>Tu cuenta ha sido creada exitosamente y ya estás listo para acceder a todos nuestros cursos y recursos de formación continua.</p>
-            </div>
+            <p class="message">
+                ¡Tu membresía ha sido activada exitosamente! A continuación encontrarás tus datos de acceso.
+            </p>
 
-            <!-- Credentials -->
-            <div class="credentials-box">
-                <h3>Tus Credenciales de Acceso</h3>
+            <!-- Credentials Section -->
+            <div class="section">
+                <div class="section-title">Tus Credenciales</div>
+                <div class="credentials">
+                    <div class="credential-row">
+                        <span class="credential-label">Email</span>
+                        <span class="credential-value">{{ $email }}</span>
+                    </div>
 
-                <div class="credential-item">
-                    <span class="credential-label">Email</span>
-                    <span class="credential-value">{{ $email }}</span>
-                </div>
+                    <div class="credential-row">
+                        <span class="credential-label">Usuario</span>
+                        <span class="credential-value">{{ $username }}</span>
+                    </div>
 
-                <div class="credential-item">
-                    <span class="credential-label">Usuario (Login)</span>
-                    <span class="credential-value">{{ $username }}</span>
-                </div>
-
-                <div class="credential-item">
-                    <span class="credential-label">Contraseña</span>
-                    <span class="credential-value">{{ $password }}</span>
+                    <div class="credential-row">
+                        <span class="credential-label">Contraseña</span>
+                        <span class="credential-value">{{ $password }}</span>
+                    </div>
                 </div>
             </div>
 
-            <!-- Important Note -->
-            <div class="important-note">
-                <strong>⚠️ Importante:</strong> Por seguridad, te recomendamos cambiar tu contraseña en tu primer acceso. Guarda estos datos en un lugar seguro.
+            <!-- Alert -->
+            <div class="alert">
+                <strong>Importante:</strong> Por seguridad, te recomendamos cambiar tu contraseña en tu primer acceso.
             </div>
 
-            <!-- Course Info -->
-            <div class="course-info">
-                <h3>Tu Membresía</h3>
-                <p><strong>{{ $membershipName }}</strong></p>
-                <p>Ya tienes acceso a todos los contenidos y beneficios de tu membresía.</p>
-            </div>
-
-            <!-- Instructions -->
-            <div class="instructions">
-                <h3>Cómo Acceder</h3>
-                <ol>
-                    <li>Haz clic en el botón "Ir al Campus" a continuación</li>
-                    <li>Inicia sesión con tu usuario y contraseña</li>
-                    <li>Accede a todos los contenidos de tu membresía</li>
-                    <li>¡Disfruta de todos los beneficios de tu suscripción!</li>
-                </ol>
+            <!-- Membership Info -->
+            <div class="section">
+                <div class="section-title">Tu Acceso</div>
+                <p class="message">
+                    Membresía: <strong>{{ $membershipName }}</strong>
+                </p>
+                <p class="message">
+                    Tienes acceso inmediato a todos los contenidos y beneficios de tu membresía.
+                </p>
             </div>
 
             <!-- CTA Button -->
-            <div class="cta-button-wrapper">
-                <a href="{{ $campusUrl }}" class="cta-button">→ Ir al Campus</a>
-            </div>
+            <a href="{{ $campusUrl }}" class="button">Acceder a tu Membresía</a>
 
-            <!-- Additional Info -->
-            <div style="margin-bottom: 30px; color: #555; line-height: 1.8;">
-                <p><strong>¿Tienes problemas para acceder?</strong></p>
-                <p>Si experimentas dificultades para iniciar sesión o necesitas ayuda, no dudes en contactarnos a través de nuestro correo de soporte.</p>
+            <!-- Support -->
+            <div class="support">
+                ¿Necesitas ayuda? Contáctanos en <a href="mailto:contacto@acoficum.org">contacto@acoficum.org</a>
             </div>
         </div>
 
         <!-- Footer -->
         <div class="footer">
-            <p><strong>ACOFICUM - Asociación Colombiana de Oficiales de Cumplimiento</strong></p>
-            <p>Este es un correo automático, por favor no responda a esta dirección.</p>
-            <p style="margin-top: 10px; color: #999;">© {{ now()->year }} ACOFICUM. Todos los derechos reservados.</p>
+            <p>© {{ now()->year }} ACOFICUM - Asociación Colombiana de Oficiales de Cumplimiento</p>
+            <p style="margin-top: 8px;">Este es un correo automático. Por favor no responda a esta dirección.</p>
         </div>
     </div>
 </body>
