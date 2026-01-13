@@ -28,16 +28,17 @@
         }
 
         .header {
-            background: #ffffff;
+            background: linear-gradient(135deg, #003366 0%, #004d99 100%);
             padding: 30px 20px 20px;
             text-align: center;
-            border-bottom: 1px solid #f0f0f0;
+            border-bottom: 3px solid #ffc107;
         }
 
         .logo {
             max-height: 50px;
             margin-bottom: 15px;
             display: block;
+            filter: brightness(0) invert(1);
         }
 
         .content {
@@ -65,15 +66,18 @@
         .section-title {
             font-size: 13px;
             font-weight: 700;
-            color: #003366;
+            color: #ffffff;
+            background: linear-gradient(90deg, #003366 0%, #004d99 100%);
             text-transform: uppercase;
             letter-spacing: 0.5px;
             margin-bottom: 12px;
+            padding: 8px 12px;
+            border-radius: 3px;
         }
 
         .credentials {
-            background: #fafbfc;
-            border: 1px solid #e8e8e8;
+            background: linear-gradient(135deg, #f0f4ff 0%, #e8f1ff 100%);
+            border-left: 4px solid #ffc107;
             border-radius: 4px;
             padding: 16px;
             margin-bottom: 20px;
@@ -107,8 +111,8 @@
         }
 
         .alert {
-            background: #fff5f5;
-            border-left: 3px solid #d32f2f;
+            background: linear-gradient(135deg, #fff8e8 0%, #fffbf0 100%);
+            border-left: 4px solid #ffc107;
             padding: 12px 14px;
             border-radius: 3px;
             font-size: 13px;
@@ -118,13 +122,13 @@
         }
 
         .alert strong {
-            color: #d32f2f;
+            color: #003366;
         }
 
         .button {
             display: block;
-            background: #d32f2f;
-            color: white;
+            background: linear-gradient(135deg, #ffc107 0%, #ffb300 100%);
+            color: #003366;
             text-decoration: none;
             padding: 12px 20px;
             border-radius: 4px;
@@ -132,32 +136,37 @@
             text-align: center;
             margin-bottom: 20px;
             font-size: 14px;
-            transition: background 0.2s;
+            transition: all 0.3s;
+            border: 2px solid #ffc107;
         }
 
         .button:hover {
-            background: #b71c1c;
+            background: linear-gradient(135deg, #ffb300 0%, #ff9800 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 51, 102, 0.2);
         }
 
         .support {
             font-size: 13px;
-            color: #999;
+            color: #666;
             padding: 12px;
-            background: #fafbfc;
+            background: #f0f4ff;
             border-radius: 4px;
+            border-left: 3px solid #003366;
         }
 
         .support a {
-            color: #d32f2f;
+            color: #003366;
+            font-weight: 600;
             text-decoration: none;
         }
 
-        .support a:hover {
-            text-decoration: underline;
-        }
-
-        .footer {
-            background: #fafbfc;
+        .support a:hoverlinear-gradient(135deg, #003366 0%, #004d99 100%);
+            border-top: 3px solid #ffc107;
+            padding: 20px;
+            text-align: center;
+            font-size: 11px;
+            color: #ffffff #fafbfc;
             border-top: 1px solid #f0f0f0;
             padding: 20px;
             text-align: center;
