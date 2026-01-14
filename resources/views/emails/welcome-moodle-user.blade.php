@@ -236,6 +236,11 @@
                 <strong>Importante:</strong> Por seguridad, te recomendamos cambiar tu contraseña en tu primer acceso.
             </div>
 
+            <!-- Member Code Alert -->
+            <div class="alert" style="background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); border-left-color: #ff9800;">
+                <strong style="color: #e65100;">⚠️ Código de Membresía Requerido:</strong> Cuando ingreses al portal de Asociados, deberás proporcionar el <strong>Código de Miembro</strong> que aparece arriba ({{ $codemenber }}). Este código es esencial para validar tu membresía y acceder a todos tus beneficios.
+            </div>
+
             <!-- Membership Info -->
             <div class="section">
                 <div class="section-title">Tu Acceso</div>
