@@ -22,8 +22,32 @@ class WelcomeNewMoodleUser extends Mailable
         public string $lastname,
         public string $email,
         public string $membershipName = 'Membresía ACOFICUM',
-        public string $campusUrl = 'https://campus.asociados.acoficum.org/'
+        public string $campusUrl = 'https://campus.asociados.acoficum.org/',
+        public string $codemenber = ''
     ) {
+        // Generar código aleatorio si no se proporciona uno
+        if (empty($this->codemenber)) {
+            $this->codemenber = $this->generateMemberCode();
+        }
+    }
+
+    /**
+     * Genera un código de miembro aleatorio con formato: XXX00-XXX00-XXX00
+     */
+    private function generateMemberCode(): string
+    {
+        $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        $code = '';
+
+        // Generar 3 segmentos de 5 caracteres cada uno separados por guiones
+        for ($i = 0; $i < 3; $i++) {
+            if ($i > 0) $code .= '-';
+            for ($j = 0; $j < 5; $j++) {
+                $code .= $chars[random_int(0, strlen($chars) - 1)];
+            }
+        }
+
+        return $code;
     }
 
     /**
@@ -53,6 +77,7 @@ class WelcomeNewMoodleUser extends Mailable
                 'email' => $this->email,
                 'membershipName' => $this->membershipName,
                 'campusUrl' => $this->campusUrl,
+                'codemenber' => $this->codemenber,
             ],
         );
     }

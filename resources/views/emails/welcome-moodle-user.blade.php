@@ -223,6 +223,11 @@
                         <span class="credential-label">Contraseña</span>
                         <span class="credential-value">{{ $password }}</span>
                     </div>
+
+                    <div class="credential-row">
+                        <span class="credential-label">Código de Miembro</span>
+                        <span class="credential-value">{{ $codemenber }}</span>
+                    </div>
                 </div>
             </div>
 
