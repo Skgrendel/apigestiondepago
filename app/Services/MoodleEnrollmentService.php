@@ -217,7 +217,8 @@ class MoodleEnrollmentService
                 $moodleCredentials = [
                     'username' => $creationResult['username'],
                     'password' => $creationResult['password'],
-                    'email' => $userData['email']
+                    'email' => $userData['email'],
+                    'membershipCode' => $creationResult['membershipCode'] ?? null
                 ];
 
                 Log::info('Moodle user created successfully from Epayco', [
@@ -251,7 +252,8 @@ class MoodleEnrollmentService
                         $moodleCredentials['username'],
                         $moodleCredentials['password'],
                         $userData['firstname'],
-                        $userData['lastname']
+                        $userData['lastname'],
+                        $moodleCredentials['membershipCode']
                     );
 
                     Log::info('Welcome email sent successfully', [
@@ -394,10 +396,16 @@ class MoodleEnrollmentService
             // Generate username from email
             $username = $this->generateMoodleUsername($userData['email']);
 
-            // Generate a secure random password
-            $password = Str::password(10, true, true, true, false) . '!1A';
+            // Generate a secure random password that meets Moodle requirements
+            // Moodle requires at least: 1 lowercase, 1 uppercase, 1 number, 1 symbol
+            $password = Str::password(12, true, true, true, true);
 
-            // Prepare user data
+            // Generate membership code
+            $membershipCode = $this->generateMembershipCode();
+
+            // Prepare user data with custom fields
+            // Nota: Se crean sin customfields por ahora, ya que la API tiene restricciones
+            // Los customfields pueden asignarse usando el comando: moodle:assign-customfields
             $moodleUserData = [
                 'users' => [
                     [
@@ -437,16 +445,22 @@ class MoodleEnrollmentService
             if (isset($result['exception'])) {
                 Log::error('Moodle API error creating user from Epayco', [
                     'error' => $result['message'] ?? 'Unknown error',
-                    'email' => $userData['email']
+                    'exception' => $result['exception'] ?? null,
+                    'errorcode' => $result['errorcode'] ?? null,
+                    'email' => $userData['email'],
+                    'full_response' => $result
                 ]);
                 return null;
             }
 
             if (is_array($result) && !empty($result[0]['id'])) {
+                $moodleUserId = (int) $result[0]['id'];
+
                 return [
-                    'id' => (int) $result[0]['id'],
+                    'id' => $moodleUserId,
                     'username' => $username,
-                    'password' => $password
+                    'password' => $password,
+                    'membershipCode' => $membershipCode
                 ];
             }
 
@@ -693,6 +707,27 @@ class MoodleEnrollmentService
     }
 
     /**
+     * Generate random membership code
+     * Format: XXXXX-XXXXX-XXXXX (e.g., A7bK2-M9pLx-Q4vJ8)
+     *
+     * @return string
+     */
+    private function generateMembershipCode(): string
+    {
+        $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        $code = '';
+
+        for ($i = 0; $i < 3; $i++) {
+            if ($i > 0) $code .= '-';
+            for ($j = 0; $j < 5; $j++) {
+                $code .= $chars[random_int(0, strlen($chars) - 1)];
+            }
+        }
+
+        return $code;
+    }
+
+    /**
      * Generate Moodle username from email
      *
      * @param string $email
@@ -785,6 +820,7 @@ class MoodleEnrollmentService
      * @param string $password
      * @param string $firstname
      * @param string $lastname
+     * @param string|null $membershipCode
      * @return bool
      */
     private function sendWelcomeEmail(
@@ -792,7 +828,8 @@ class MoodleEnrollmentService
         string $username,
         string $password,
         string $firstname,
-        string $lastname
+        string $lastname,
+        ?string $membershipCode = null
     ): bool {
         try {
             $campusUrl = env('MOODLE_URL');
@@ -809,7 +846,8 @@ class MoodleEnrollmentService
                     lastname: $lastname,
                     email: $email,
                     membershipName: env('MOODLE_COURSE_NAME', 'Membresía ACOFICUM'),
-                    campusUrl: $campusUrl
+                    campusUrl: $campusUrl,
+                    codemenber: $membershipCode ?? ''
                 )
             );
 
